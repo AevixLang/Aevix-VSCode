@@ -1,0 +1,78 @@
+{
+  "name": "aevix-language",
+  "displayName": "Aevix Language",
+  "description": "Syntax highlighting, snippets, and file icons for the Aevix programming language",
+  "version": "0.1.0",
+  "publisher": "OsmanNuri",
+  "author": {
+    "name": "Osman Nuri",
+    "email": "osman@aevix.dev"
+  },
+  "license": "Apache-2.0",
+  "icon": "icons/icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "aevix",
+    "syntax highlighting",
+    "snippets",
+    "programming language",
+    "systems programming",
+    ".aev"
+  ],
+  "homepage": "https://github.com/OsmanNuri/Aevix-VSCode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OsmanNuri/Aevix-VSCode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/OsmanNuri/Aevix-VSCode/issues"
+  },
+  "galleryBanner": {
+    "color": "#1a1a2e",
+    "theme": "dark"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "aevix",
+        "aliases": [
+          "Aevix",
+          "aevix"
+        ],
+        "extensions": [
+          ".aev"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "dark": "./icons/aev.svg",
+          "light": "./icons/aev.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "aevix",
+        "scopeName": "source.aevix",
+        "path": "./syntaxes/aevix.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "aevix",
+        "path": "./snippets.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^2.22.0"
+  }
+}

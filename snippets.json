@@ -1,0 +1,74 @@
+{
+  "Function": {
+    "prefix": "func",
+    "body": [
+      "func ${1:name}(${2:params}) ${3: : return_type} {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Define a new function"
+  },
+  "Let Variable": {
+    "prefix": "let",
+    "body": [
+      "let ${1:name}${2: : type} = ${3:value};",
+      "$0"
+    ],
+    "description": "Declare a variable"
+  },
+  "For Loop": {
+    "prefix": "for",
+    "body": [
+      "for (${1:let i = 0}; ${2:i < 10}; ${3:i = i + 1}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Standard for loop"
+  },
+  "For-In Loop": {
+    "prefix": "forin",
+    "body": [
+      "for (${1:var} in ${2:iterable}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Iterate over an array"
+  },
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if (${1:condition}) {",
+      "\t$0",
+      "} else {",
+      "\t",
+      "}"
+    ],
+    "description": "If-Else conditional"
+  },
+  "While Loop": {
+    "prefix": "while",
+    "body": [
+      "while (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "While loop"
+  },
+  "Hot Region": {
+    "prefix": "hot",
+    "body": [
+      "hot {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Performance-critical hot region"
+  },
+  "Print Statement": {
+    "prefix": "print",
+    "body": [
+      "print ${1:value};",
+      "$0"
+    ],
+    "description": "Print a value to console"
+  }
+}

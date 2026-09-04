@@ -1,0 +1,168 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Aevix",
+  "scopeName": "source.aevix",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#func-def" },
+    { "include": "#func-call" },
+    { "include": "#variables" },
+    { "include": "#operators" },
+    { "include": "#punctuation" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.aevix",
+          "begin": "//",
+          "end": "$"
+        },
+        {
+          "name": "comment.block.aevix",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.aevix",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.aevix",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.aevix",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.aevix",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.aevix",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "keyword.control.aevix",
+          "match": "\\b(if|else|while|for|in|return)\\b"
+        },
+        {
+          "name": "keyword.other.aevix",
+          "match": "\\b(let|hot|func|print)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "match": "\\b(int|float|bool|string)\\b",
+          "patterns": [
+            {
+              "name": "support.type.aevix",
+              "match": "\\b(int|float|bool|string)\\b"
+            }
+          ]
+        },
+        {
+          "name": "support.type.array.aevix",
+          "match": "\\b(int|float|bool|string)\\s*\\[\\s*\\]"
+        }
+      ]
+    },
+    "func-def": {
+      "patterns": [
+        {
+          "begin": "\\b(func)\\s+([a-zA-Z_]\\w*)",
+          "beginCaptures": {
+            "1": { "name": "keyword.other.aevix" },
+            "2": { "name": "entity.name.function.aevix" }
+          },
+          "end": "(?=\\{)",
+          "patterns": [
+            {
+              "name": "variable.parameter.aevix",
+              "match": "\\b([a-zA-Z_]\\w*)(?=\\s*:)"
+            },
+            {
+              "name": "punctuation.separator.aevix",
+              "match": ","
+            },
+            {
+              "name": "punctuation.definition.type.aevix",
+              "match": ":"
+            }
+          ]
+        }
+      ]
+    },
+    "func-call": {
+      "patterns": [
+        {
+          "name": "entity.name.function.aevix",
+          "match": "\\b([a-zA-Z_]\\w*)(?=\\s*\\()"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.aevix",
+          "match": "\\b[a-zA-Z_]\\w*\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.aevix",
+          "match": "\\+|-|\\*|/"
+        },
+        {
+          "name": "keyword.operator.comparison.aevix",
+          "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.logical.aevix",
+          "match": "&&|\\|\\||!"
+        },
+        {
+          "name": "keyword.operator.assignment.aevix",
+          "match": "="
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        { "name": "punctuation.definition.begin.brace.aevix", "match": "\\{" },
+        { "name": "punctuation.definition.end.brace.aevix", "match": "\\}" },
+        { "name": "punctuation.definition.begin.bracket.aevix", "match": "\\[" },
+        { "name": "punctuation.definition.end.bracket.aevix", "match": "\\]" },
+        { "name": "punctuation.definition.begin.paren.aevix", "match": "\\(" },
+        { "name": "punctuation.definition.end.paren.aevix", "match": "\\)" },
+        { "name": "punctuation.terminator.statement.aevix", "match": ";" },
+        { "name": "punctuation.separator.comma.aevix", "match": "," },
+        { "name": "punctuation.definition.type.aevix", "match": "(?<=\\b(let|func|param))\\s*:" }
+      ]
+    }
+  }
+}
