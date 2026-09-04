@@ -64,7 +64,7 @@ print arr[0];
 
 ### From VSIX
 
-1. Download the latest `.vsix` file from [Releases](https://github.com/OsmanNuri/Aevix-VSCode/releases)
+1. Download the latest `.vsix` file from [Releases](https://github.com/AevixLang/Aevix-VSCode/releases)
 2. Open VS Code
 3. Press `Cmd+Shift+P` (macOS) or `Ctrl+Shift+P` (Windows/Linux)
 4. Type "Install from VSIX" and select the downloaded file
@@ -72,7 +72,7 @@ print arr[0];
 ### From Source
 
 ```bash
-git clone https://github.com/OsmanNuri/Aevix-VSCode.git
+git clone https://github.com/AevixLang/Aevix-VSCode.git
 cd Aevix-VSCode
 npm install
 vsce package
@@ -99,6 +99,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ## Links
 
-- [Aevix Language Repository](https://github.com/OsmanNuri/Aevix-Language)
-- [Aevix Documentation](https://github.com/OsmanNuri/Aevix-Language/blob/main/Syntax.md)
-- [Report Issues](https://github.com/OsmanNuri/Aevix-VSCode/issues)
+- [Aevix Language Repository](https://github.com/AevixLang/Aevix)
+- [Aevix Documentation](https://github.com/AevixLang/Aevix/blob/main/Syntax.md)
+- [Report Issues](https://github.com/AevixLang/Aevix-VSCode/issues)

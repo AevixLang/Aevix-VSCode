@@ -25,13 +25,13 @@
     "systems programming",
     ".aev"
   ],
-  "homepage": "https://github.com/OsmanNuri/Aevix-VSCode",
+  "homepage": "https://github.com/AevixLang/Aevix-VSCode",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OsmanNuri/Aevix-VSCode.git"
+    "url": "https://github.com/AevixLang/Aevix-VSCode.git"
   },
   "bugs": {
-    "url": "https://github.com/OsmanNuri/Aevix-VSCode/issues"
+    "url": "https://github.com/AevixLang/Aevix-VSCode/issues"
   },
   "galleryBanner": {
     "color": "#1a1a2e",
