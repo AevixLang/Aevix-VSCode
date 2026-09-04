@@ -63,6 +63,13 @@
         "language": "aevix",
         "path": "./snippets.json"
       }
+    ],
+    "iconThemes": [
+      {
+        "id": "aevix-icons",
+        "label": "Aevix",
+        "path": "./icons/aevix-icon-theme.json"
+      }
     ]
   },
   "scripts": {

@@ -1,0 +1,10 @@
+{
+  "iconDefinitions": {
+    "_aevix_file": {
+      "iconPath": "./aev.png"
+    }
+  },
+  "fileExtensions": {
+    "aev": "_aevix_file"
+  }
+}
