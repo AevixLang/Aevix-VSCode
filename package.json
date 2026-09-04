@@ -48,7 +48,13 @@
         "extensions": [
           ".aev"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "id": "aevix-file",
+          "dark": "./icons/aev.png",
+          "light": "./icons/aev.png",
+          "highContrast": "./icons/aev.png"
+        }
       }
     ],
     "grammars": [
@@ -64,11 +70,11 @@
         "path": "./snippets.json"
       }
     ],
-    "iconThemes": [
+    "icons": [
       {
-        "id": "aevix-icons",
-        "label": "Aevix",
-        "path": "./icons/aevix-icon-theme.json"
+        "id": "aevix-file",
+        "description": "Aevix file icon",
+        "default": "./icons/aev.png"
       }
     ]
   },
