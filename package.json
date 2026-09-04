@@ -48,11 +48,7 @@
         "extensions": [
           ".aev"
         ],
-        "configuration": "./language-configuration.json",
-        "icon": {
-          "dark": "./icons/aev.svg",
-          "light": "./icons/aev.svg"
-        }
+        "configuration": "./language-configuration.json"
       }
     ],
     "grammars": [
