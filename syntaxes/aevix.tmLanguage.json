@@ -6,10 +6,15 @@
     { "include": "#comments" },
     { "include": "#strings" },
     { "include": "#numbers" },
+    { "include": "#func-def" },
+    { "include": "#struct-def" },
     { "include": "#keywords" },
     { "include": "#types" },
-    { "include": "#func-def" },
+    { "include": "#struct-literal" },
+    { "include": "#user-types" },
+    { "include": "#builtins" },
     { "include": "#func-call" },
+    { "include": "#member-access" },
     { "include": "#variables" },
     { "include": "#operators" },
     { "include": "#punctuation" }
@@ -38,7 +43,7 @@
           "patterns": [
             {
               "name": "constant.character.escape.aevix",
-              "match": "\\\\."
+              "match": "\\\\n|\\\\t|\\\\r|\\\\\\\\|\\\\\""
             }
           ]
         }
@@ -56,43 +61,11 @@
         }
       ]
     },
-    "keywords": {
-      "patterns": [
-        {
-          "name": "constant.language.boolean.aevix",
-          "match": "\\b(true|false)\\b"
-        },
-        {
-          "name": "keyword.control.aevix",
-          "match": "\\b(if|else|while|for|in|return)\\b"
-        },
-        {
-          "name": "keyword.other.aevix",
-          "match": "\\b(let|hot|func|print)\\b"
-        }
-      ]
-    },
-    "types": {
-      "patterns": [
-        {
-          "match": "\\b(int|float|bool|string)\\b",
-          "patterns": [
-            {
-              "name": "support.type.aevix",
-              "match": "\\b(int|float|bool|string)\\b"
-            }
-          ]
-        },
-        {
-          "name": "support.type.array.aevix",
-          "match": "\\b(int|float|bool|string)\\s*\\[\\s*\\]"
-        }
-      ]
-    },
     "func-def": {
       "patterns": [
         {
-          "begin": "\\b(func)\\s+([a-zA-Z_]\\w*)",
+          "name": "meta.function.aevix",
+          "begin": "\\b(func)\\s+([a-zA-Z_]\\w*)\\s*\\(",
           "beginCaptures": {
             "1": { "name": "keyword.other.aevix" },
             "2": { "name": "entity.name.function.aevix" }
@@ -104,14 +77,98 @@
               "match": "\\b([a-zA-Z_]\\w*)(?=\\s*:)"
             },
             {
-              "name": "punctuation.separator.aevix",
-              "match": ","
+              "match": "\\)\\s*:\\s*([a-zA-Z_]\\w*(?:\\s*\\[\\s*[0-9]*\\s*\\])?)",
+              "captures": {
+                "1": { "name": "support.type.aevix" }
+              }
             },
-            {
-              "name": "punctuation.definition.type.aevix",
-              "match": ":"
-            }
+            { "include": "#types" },
+            { "include": "#user-types" },
+            { "include": "#numbers" },
+            { "name": "punctuation.separator.aevix", "match": "," },
+            { "name": "punctuation.definition.type.aevix", "match": ":" },
+            { "name": "punctuation.definition.parameters.aevix", "match": "\\(|\\)" }
           ]
+        }
+      ]
+    },
+    "struct-def": {
+      "patterns": [
+        {
+          "name": "meta.struct.aevix",
+          "begin": "\\b(struct)\\s+([a-zA-Z_]\\w*)",
+          "beginCaptures": {
+            "1": { "name": "keyword.other.aevix" },
+            "2": { "name": "entity.name.type.aevix" }
+          },
+          "end": "(?=\\})",
+          "patterns": [
+            {
+              "name": "variable.other.member.aevix",
+              "match": "\\b([a-zA-Z_]\\w*)(?=\\s*:)"
+            },
+            { "include": "#comments" },
+            { "include": "#types" },
+            { "include": "#user-types" },
+            { "name": "punctuation.separator.aevix", "match": "," },
+            { "name": "punctuation.definition.type.aevix", "match": ":" }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.aevix",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "keyword.control.aevix",
+          "match": "\\b(if|else|while|for|in|return|break|continue|hot|epoch)\\b"
+        },
+        {
+          "name": "keyword.control.import.aevix",
+          "match": "\\b(import)\\b"
+        },
+        {
+          "name": "keyword.other.aevix",
+          "match": "\\b(let|func|struct|print|new)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.array.aevix",
+          "match": "\\b(int|float|bool|string)\\s*\\[\\s*[0-9]*\\s*\\]"
+        },
+        {
+          "name": "support.type.aevix",
+          "match": "\\b(int|float|bool|string)\\b"
+        }
+      ]
+    },
+    "struct-literal": {
+      "patterns": [
+        {
+          "name": "entity.name.type.aevix",
+          "match": "\\b([A-Z]\\w*)(?=\\s*\\{)"
+        }
+      ]
+    },
+    "user-types": {
+      "patterns": [
+        {
+          "name": "support.type.aevix",
+          "match": "\\b([A-Z]\\w*)\\b"
+        }
+      ]
+    },
+    "builtins": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.aevix",
+          "match": "\\b(len|argc|arg|read|write|input|to_int|to_float|to_str|substr|split|min|max|abs|exit)(?=\\s*\\()"
         }
       ]
     },
@@ -120,6 +177,16 @@
         {
           "name": "entity.name.function.aevix",
           "match": "\\b([a-zA-Z_]\\w*)(?=\\s*\\()"
+        }
+      ]
+    },
+    "member-access": {
+      "patterns": [
+        {
+          "match": "(?<=\\.)\\s*([a-zA-Z_]\\w*)",
+          "captures": {
+            "1": { "name": "variable.other.member.aevix" }
+          }
         }
       ]
     },
@@ -134,12 +201,16 @@
     "operators": {
       "patterns": [
         {
-          "name": "keyword.operator.arithmetic.aevix",
-          "match": "\\+|-|\\*|/"
+          "name": "keyword.operator.assignment.compound.aevix",
+          "match": "\\+=|-=|\\*=|/="
         },
         {
           "name": "keyword.operator.comparison.aevix",
           "match": "==|!=|<=|>=|<|>"
+        },
+        {
+          "name": "keyword.operator.arithmetic.aevix",
+          "match": "\\+|-|\\*|/"
         },
         {
           "name": "keyword.operator.logical.aevix",
@@ -161,7 +232,7 @@
         { "name": "punctuation.definition.end.paren.aevix", "match": "\\)" },
         { "name": "punctuation.terminator.statement.aevix", "match": ";" },
         { "name": "punctuation.separator.comma.aevix", "match": "," },
-        { "name": "punctuation.definition.type.aevix", "match": "(?<=\\b(let|func|param))\\s*:" }
+        { "name": "punctuation.definition.type.aevix", "match": ":" }
       ]
     }
   }

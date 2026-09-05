@@ -12,9 +12,11 @@
 ## Supported Syntax
 
 ```aev
-// Variables
-let x: int = 10;
-let y = 20.5;
+// Imports
+import "lib/geometry";
+
+// Structs
+struct Point { x: int, y: int }
 
 // Functions
 func add(a: int, b: int) : int {
@@ -28,22 +30,32 @@ if (x > 5) {
     print 0;
 }
 
-for (let i = 0; i < 10; i = i + 1) {
+for (let i = 0; i < 10; i += 1) {
+    if (i == 3) { continue; }
+    if (i == 6) { break; }
     print i;
 }
 
+for item in arr {
+    print item;
+}
+
 while (x > 0) {
-    x = x - 1;
+    x -= 1;
 }
 
-// Hot Regions (performance-critical)
+// Hot regions and epochs
 hot {
-    let t = x + 1;
-    print t;
+    let buf = new int[16];
+    epoch {
+        let tmp = new int[100];
+    }
+    print len(buf);
 }
 
-// Arrays
+// Arrays and slices
 let arr = [1, 2, 3];
+let a: int[4] = [1, 2, 3, 4];
 print arr[0];
 ```
 
@@ -58,7 +70,12 @@ print arr[0];
 | `for` | Standard for loop |
 | `forin` | For-In loop |
 | `hot` | Performance-critical hot region |
-| `print` | Print a value to console |
+| `epoch` | Arena rollback scope |
+| `struct` | Define a struct |
+| `import` | Import declarations from a file or package |
+| `new` | Allocate a zeroed array in the arena |
+| `break` / `continue` | Loop control |
+| `print` | Print values to console |
 
 ## Installation
 

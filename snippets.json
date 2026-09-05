@@ -2,7 +2,7 @@
   "Function": {
     "prefix": "func",
     "body": [
-      "func ${1:name}(${2:params}) ${3: : return_type} {",
+      "func ${1:name}(${2:params})${3: : ${4:int}} {",
       "\t$0",
       "}"
     ],
@@ -19,7 +19,7 @@
   "For Loop": {
     "prefix": "for",
     "body": [
-      "for (${1:let i = 0}; ${2:i < 10}; ${3:i = i + 1}) {",
+      "for (${1:let i = 0}; ${2:i < 10}; ${3:i += 1}) {",
       "\t$0",
       "}"
     ],
@@ -28,11 +28,11 @@
   "For-In Loop": {
     "prefix": "forin",
     "body": [
-      "for (${1:var} in ${2:iterable}) {",
+      "for ${1:item} in ${2:iterable} {",
       "\t$0",
       "}"
     ],
-    "description": "Iterate over an array"
+    "description": "Iterate over an array or slice"
   },
   "If Statement": {
     "prefix": "if",
@@ -63,12 +63,57 @@
     ],
     "description": "Performance-critical hot region"
   },
+  "Epoch": {
+    "prefix": "epoch",
+    "body": [
+      "epoch {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Arena rollback scope: frees everything allocated inside on exit"
+  },
+  "Struct": {
+    "prefix": "struct",
+    "body": [
+      "struct ${1:Name} {",
+      "\t${2:field}: ${3:type},",
+      "$0",
+      "}"
+    ],
+    "description": "Define a struct"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": [
+      "import \"${1:module}\";",
+      "$0"
+    ],
+    "description": "Import declarations from another file or package"
+  },
+  "New Array": {
+    "prefix": "new",
+    "body": [
+      "let ${1:buf} = new ${2:int}[${3:n}];",
+      "$0"
+    ],
+    "description": "Allocate a zeroed, runtime-sized array in the arena"
+  },
+  "Break": {
+    "prefix": "break",
+    "body": "break;",
+    "description": "Exit the innermost loop"
+  },
+  "Continue": {
+    "prefix": "continue",
+    "body": "continue;",
+    "description": "Skip to the next loop iteration"
+  },
   "Print Statement": {
     "prefix": "print",
     "body": [
       "print ${1:value};",
       "$0"
     ],
-    "description": "Print a value to console"
+    "description": "Print one or more comma-separated values to console"
   }
 }
