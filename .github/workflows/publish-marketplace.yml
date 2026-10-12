@@ -32,6 +32,9 @@ jobs:
         id: version
         run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
 
+      - name: Use marketplace README
+        run: cp docs/MARKETPLACE.md README.md
+
       - name: Package
         run: npx @vscode/vsce package
 

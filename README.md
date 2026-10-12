@@ -2,6 +2,8 @@
 
 **Syntax highlighting, snippets, and file icons for the Aevix programming language.**
 
+> 📦 **The extension is available on the official VS Code Marketplace** — install it right from the app, see [Installation](#installation).
+
 ## Features
 
 - **Syntax Highlighting** — Full support for Aevix keywords, types, functions, operators, and comments
@@ -79,7 +81,28 @@ print arr[0];
 
 ## Installation
 
-### From VSIX
+### From the VS Code Marketplace (recommended)
+
+The extension is published on the official VS Code Marketplace as **Aevix Language**, so you can install it directly from the app — no files to download:
+
+1. Open VS Code
+2. Open the Extensions view (`Cmd+Shift+X` on macOS, `Ctrl+Shift+X` on Windows/Linux)
+3. Search for **Aevix**
+4. Click **Install** on *Aevix Language* by `aevix`
+
+Or install from the terminal:
+
+```bash
+code --install-extension aevix.aevix-language
+```
+
+Updates are delivered automatically through the Marketplace — no manual re-installs needed.
+
+Item page: [marketplace.visualstudio.com/items?itemName=aevix.aevix-language](https://marketplace.visualstudio.com/items?itemName=aevix.aevix-language)
+
+### From VSIX (offline / manual)
+
+Use this if you need a specific build or have no access to the Marketplace:
 
 1. Download the latest `.vsix` file from [Releases](https://github.com/AevixLang/Aevix-VSCode/releases)
 2. Open VS Code

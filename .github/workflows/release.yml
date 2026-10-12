@@ -39,6 +39,9 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Use marketplace README
+        run: cp docs/MARKETPLACE.md README.md
+
       - name: Package
         if: steps.check.outputs.exists == 'false'
         run: vsce package
@@ -66,6 +69,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Use marketplace README
+        run: cp docs/MARKETPLACE.md README.md
 
       - name: Package
         run: npx @vscode/vsce package
