@@ -3,7 +3,7 @@
   "displayName": "Aevix Language",
   "description": "Syntax highlighting, snippets, and file icons for the Aevix programming language",
   "version": "0.2.0",
-  "publisher": "OsmanNuri",
+  "publisher": "aevix",
   "author": {
     "name": "Osman Nuri",
     "email": "osman@aevix.dev"

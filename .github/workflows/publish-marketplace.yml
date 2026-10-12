@@ -1,0 +1,39 @@
+name: Publish to VS Marketplace
+
+# Manual publish: used for the first upload and for re-publishing an existing tag.
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Git ref to build from (tag like v0.2.0, or empty for main)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref != '' && inputs.ref || 'main' }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Version
+        id: version
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+
+      - name: Package
+        run: npx @vscode/vsce package
+
+      - name: Publish to VS Marketplace
+        run: npx @vscode/vsce publish --packagePath "$(ls *.vsix)" -p "$VSCE_PAT"
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
